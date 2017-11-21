@@ -20,8 +20,14 @@ namespace KMP_Presentation
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(MainWindow));
+        public string Source { get { return (string)GetValue(SourceProperty); } set { SetValue(SourceProperty, value); } }
+        private static readonly DependencyProperty WordProperty = DependencyProperty.Register("Word", typeof(string), typeof(MainWindow));
+        public string Word { get { return (string)GetValue(WordProperty); } set { SetValue(WordProperty, value); } }
+
         public MainWindow()
         {
+            DataContext = this;
             InitializeComponent();
         }
     }
