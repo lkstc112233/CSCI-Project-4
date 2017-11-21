@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMP Presentation", "KMP Presentation\KMP Presentation.csproj", "{6FAF1ECB-C4A5-498A-854F-0D1A3D834DCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FAF1ECB-C4A5-498A-854F-0D1A3D834DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAF1ECB-C4A5-498A-854F-0D1A3D834DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAF1ECB-C4A5-498A-854F-0D1A3D834DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAF1ECB-C4A5-498A-854F-0D1A3D834DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52202D00-E2BF-462D-8C13-3F998F8B283E}
+	EndGlobalSection
+EndGlobal
