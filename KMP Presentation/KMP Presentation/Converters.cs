@@ -28,6 +28,7 @@ namespace KMP_Presentation
                     p.LowerIndex = i - Position;
                     p.LowerChar = Word[i - Position];
                 }
+                list.Add(p);
             }
             return list;
         }

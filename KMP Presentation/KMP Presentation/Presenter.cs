@@ -8,9 +8,9 @@ namespace KMP_Presentation
 {
     class Presenter
     {
-        public int UpperIndex = -1;
-        public char UpperChar = '\0';
-        public int LowerIndex = -1;
-        public char LowerChar = '\0';
+        public int UpperIndex { get; set; } = -1;
+        public char UpperChar { get; set; } = '\0';
+        public int LowerIndex { get; set; } = -1;
+        public char LowerChar { get; set; } = '\0';
     }
 }

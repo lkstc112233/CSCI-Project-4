@@ -32,6 +32,13 @@ namespace KMP_Presentation
         public MainWindow()
         {
             DataContext = this;
+            Source = "AAAAAAA";
+            Word = "BB";
+            Position = 0;
+            Checking = 1;
+            SettingContentWindow setting = new SettingContentWindow();
+            setting.DataContext = this;
+            setting.Show();
             InitializeComponent();
         }
     }

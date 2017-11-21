@@ -8,6 +8,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <local:PresentationConverter x:Key="PresentationConverter"/>
+        <local:NotLessThanZeroToVisibilityConverter x:Key="IndexVisibilityConverter"/>
     </Window.Resources>
     <Grid>
         <ItemsControl>
@@ -26,7 +27,14 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="{Binding UpperIndex}"/>
+                            <Label Content="{Binding UpperChar}"/>
+                            <Label Content="{Binding LowerIndex}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>
+                            <Label Content="{Binding LowerChar}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

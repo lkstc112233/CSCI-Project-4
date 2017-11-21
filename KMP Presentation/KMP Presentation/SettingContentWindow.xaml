@@ -1,0 +1,27 @@
+﻿<Window x:Class="KMP_Presentation.SettingContentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KMP_Presentation"
+        mc:Ignorable="d"
+        Title="SettingContentWindow" Height="300" Width="300">
+    <StackPanel Orientation="Vertical">
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">Source</TextBlock>
+            <TextBox Text="{Binding Path=Source}"/>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">Word</TextBlock>
+            <TextBox Text="{Binding Path=Word}"/>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">Position</TextBlock>
+            <TextBox Text="{Binding Path=Position}"/>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">Checking</TextBlock>
+            <TextBox Text="{Binding Path=Checking}"/>
+        </DockPanel>
+    </StackPanel>
+</Window>
