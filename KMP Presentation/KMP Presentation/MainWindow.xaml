@@ -6,9 +6,29 @@
         xmlns:local="clr-namespace:KMP_Presentation"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:PresentationConverter x:Key="PresentationConverter"/>
+    </Window.Resources>
     <Grid>
-        <ItemsPresenter>
-            
-        </ItemsPresenter>
+        <ItemsControl>
+            <ItemsControl.ItemsSource>
+                <MultiBinding Converter="{StaticResource PresentationConverter}">
+                    <Binding Path="Source" />
+                    <Binding Path="Word" />
+                    <Binding Path="Position" />
+                    <Binding Path="Checking" />
+                </MultiBinding>
+            </ItemsControl.ItemsSource>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>
