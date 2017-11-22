@@ -59,6 +59,9 @@
       <DependentUpon>KMP Solver.xaml</DependentUpon>
     </Compile>
     <Compile Include="KMP View Model.cs" />
+    <Compile Include="PMT Shower.xaml.cs">
+      <DependentUpon>PMT Shower.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingContentWindow.xaml.cs">
       <DependentUpon>SettingContentWindow.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PMT Shower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SettingContentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

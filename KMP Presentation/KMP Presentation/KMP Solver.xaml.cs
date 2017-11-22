@@ -32,5 +32,11 @@ namespace KMP_Presentation
             this.DataContext = vm;
             InitializeComponent();
         }
+
+        private void Show_PMT(object sender, RoutedEventArgs e)
+        {
+            PMT_Shower shower = new PMT_Shower(vm.Word, vm.PMT);
+            shower.Show();
+        }
     }
 }

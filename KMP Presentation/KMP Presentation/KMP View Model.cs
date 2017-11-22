@@ -34,6 +34,9 @@ namespace KMP_Presentation
             }
         }
 
+        public int[] PMT { get { return m_model.PartialMatchTable; } }
+        public string Word { get { return m_model.word; } }
+
         public ObservableCollection<Presenter> stringModel { get { return m_stringModel; } }
         private ObservableCollection<Presenter> m_stringModel;
     }

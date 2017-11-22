@@ -42,7 +42,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Grid.Row="2">
+        <Button Click="Show_PMT" Grid.Row="2">
             Show Partial Match Table
         </Button>
     </Grid>
