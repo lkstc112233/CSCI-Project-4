@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace KMP_Presentation
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<Presenter> strings;
         private static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(MainWindow));
         public string Source { get { return (string)GetValue(SourceProperty); } set { SetValue(SourceProperty, value); } }
         private static readonly DependencyProperty WordProperty = DependencyProperty.Register("Word", typeof(string), typeof(MainWindow));

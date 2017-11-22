@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace KMP_Presentation
 {
-    class Presenter
+    class Presenter : DependencyObject
     {
         public int UpperIndex { get; set; } = -1;
         public char UpperChar { get; set; } = '\0';
