@@ -6,37 +6,15 @@
         xmlns:local="clr-namespace:KMP_Presentation"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Window.Resources>
-        <local:PresentationConverter x:Key="PresentationConverter"/>
-        <local:NotLessThanZeroToVisibilityConverter x:Key="IndexVisibilityConverter"/>
-    </Window.Resources>
-    <Grid>
-        <ItemsControl>
-            <ItemsControl.ItemsSource>
-                <MultiBinding Converter="{StaticResource PresentationConverter}">
-                    <Binding Path="Source" />
-                    <Binding Path="Word" />
-                    <Binding Path="Position" />
-                    <Binding Path="Checking" />
-                </MultiBinding>
-            </ItemsControl.ItemsSource>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1">
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="{Binding UpperIndex}"/>
-                            <Label Content="{Binding UpperChar}"/>
-                            <Label Content="{Binding LowerIndex}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>
-                            <Label Content="{Binding LowerChar}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </Grid>
+    <StackPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">Source</TextBlock>
+            <TextBox Text="{Binding Path=Source, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left">Word</TextBlock>
+            <TextBox Text="{Binding Path=Word, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+        <Button Click="Show_Solver_Click">Show Solver Window</Button>
+    </StackPanel>
 </Window>

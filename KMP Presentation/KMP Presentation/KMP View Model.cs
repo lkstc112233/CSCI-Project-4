@@ -29,6 +29,7 @@ namespace KMP_Presentation
                 Presenter p = new Presenter();
                 p.UpperIndex = indexCount;
                 p.UpperChar = ch;
+                indexCount += 1;
                 stringModel.Add(p);
             }
         }

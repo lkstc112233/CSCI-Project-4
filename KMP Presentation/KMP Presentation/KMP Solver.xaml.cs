@@ -19,8 +19,17 @@ namespace KMP_Presentation
     /// </summary>
     public partial class KMP_Solver : Window
     {
+        private KMP_View_Model vm;
+
         public KMP_Solver()
         {
+            InitializeComponent();
+        }
+
+        internal KMP_Solver(KMP_View_Model vm)
+        {
+            this.vm = vm;
+            this.DataContext = vm;
             InitializeComponent();
         }
     }

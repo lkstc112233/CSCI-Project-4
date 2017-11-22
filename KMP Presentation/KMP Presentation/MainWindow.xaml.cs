@@ -25,22 +25,21 @@ namespace KMP_Presentation
         public string Source { get { return (string)GetValue(SourceProperty); } set { SetValue(SourceProperty, value); } }
         private static readonly DependencyProperty WordProperty = DependencyProperty.Register("Word", typeof(string), typeof(MainWindow));
         public string Word { get { return (string)GetValue(WordProperty); } set { SetValue(WordProperty, value); } }
-        private static readonly DependencyProperty PositionProperty = DependencyProperty.Register("Position", typeof(int), typeof(MainWindow));
-        public int Position { get { return (int)GetValue(PositionProperty); } set { SetValue(PositionProperty, value); } }
-        private static readonly DependencyProperty CheckingProperty = DependencyProperty.Register("Checking", typeof(int), typeof(MainWindow));
-        public int Checking { get { return (int)GetValue(CheckingProperty); } set { SetValue(CheckingProperty, value); } }
 
         public MainWindow()
         {
             DataContext = this;
             Source = "AAAAAAA";
             Word = "BB";
-            Position = 0;
-            Checking = 1;
-            SettingContentWindow setting = new SettingContentWindow();
-            setting.DataContext = this;
-            setting.Show();
             InitializeComponent();
+        }
+
+        private void Show_Solver_Click(object sender, RoutedEventArgs e)
+        {
+            KMP_Model mod = new KMP_Model(Source, Word);
+            KMP_View_Model vm = new KMP_View_Model(mod);
+            KMP_Solver solver = new KMP_Solver(vm);
+            solver.Show();
         }
     }
 }
