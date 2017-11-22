@@ -9,9 +9,13 @@ namespace KMP_Presentation
 {
     class Presenter : DependencyObject
     {
-        public int UpperIndex { get; set; } = -1;
-        public char UpperChar { get; set; } = '\0';
-        public int LowerIndex { get; set; } = -1;
-        public char LowerChar { get; set; } = '\0';
+        public int UpperIndex { get { return (int)GetValue(UpperIndexProperty); } set { SetValue(UpperIndexProperty, value); } }
+        public static readonly DependencyProperty UpperIndexProperty = DependencyProperty.Register("UpperIndex", typeof(int), typeof(Presenter), new PropertyMetadata(-1)); 
+        public char UpperChar { get { return (char)GetValue(UpperCharProperty); } set { SetValue(UpperCharProperty, value); } }
+        public static readonly DependencyProperty UpperCharProperty = DependencyProperty.Register("UpperChar", typeof(char), typeof(Presenter), new PropertyMetadata('\0'));
+        public int LowerIndex { get { return (int)GetValue(LowerIndexProperty); } set { SetValue(LowerIndexProperty, value); } }
+        public static readonly DependencyProperty LowerIndexProperty = DependencyProperty.Register("LowerIndex", typeof(int), typeof(Presenter), new PropertyMetadata(-1));
+        public char LowerChar { get { return (char)GetValue(LowerCharProperty); } set { SetValue(LowerCharProperty, value); } }
+        public static readonly DependencyProperty LowerCharProperty = DependencyProperty.Register("LowerChar", typeof(char), typeof(Presenter), new PropertyMetadata('\0'));
     }
 }
