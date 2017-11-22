@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
             <Button DockPanel.Dock="Left">One Step</Button>
@@ -41,5 +42,8 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <Button Grid.Row="2">
+            Show Partial Match Table
+        </Button>
     </Grid>
 </Window>
