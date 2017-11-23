@@ -22,6 +22,18 @@ namespace KMP_Presentation
             throw new NotImplementedException();
         }
     }
+    class TimeSpanConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((TimeSpan)value).TotalMilliseconds;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return TimeSpan.FromMilliseconds((double)value);
+        }
+    }
     class BackgroundColorConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

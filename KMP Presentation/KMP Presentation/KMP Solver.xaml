@@ -10,9 +10,11 @@
     <Window.Resources>
         <local:NotLessThanZeroToVisibilityConverter x:Key="IndexVisibilityConverter"/>
         <local:BackgroundColorConverter x:Key="ColorConverter"/>
+        <local:TimeSpanConverter x:Key="TimeConverter"/>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="local:CustomCommands.OneStep" Executed="OneStep_Executed" CanExecute="OneStep_CanExecute"/>
+        <CommandBinding Command="local:CustomCommands.BeginPause" Executed="BeginPause_Executed" CanExecute="BeginPause_CanExecute"/>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -22,10 +24,10 @@
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
             <Button DockPanel.Dock="Left" Command="local:CustomCommands.OneStep">One Step</Button>
-            <Button DockPanel.Dock="Left">Show Begin</Button>
+            <Button DockPanel.Dock="Left" Command="local:CustomCommands.BeginPause">Show Begin/Pause</Button>
             <Label DockPanel.Dock="Left">Fast</Label>
             <Label DockPanel.Dock="Right">Slow</Label>
-            <ScrollBar Orientation="Horizontal" Minimum="100" Maximum="2000" SmallChange="10" LargeChange="300" Value="{Binding Source={x:Static properties:Settings.Default}, Path=PresentationSpeed}"/>
+            <ScrollBar Name="Slider" Orientation="Horizontal" Minimum="100" Maximum="2000" SmallChange="10" LargeChange="300" Value="{Binding Path=PresentationSpeed, Converter={StaticResource TimeConverter}}"/>
         </DockPanel>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding stringModel}">
             <ItemsControl.ItemsPanel>

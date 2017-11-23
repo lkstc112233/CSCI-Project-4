@@ -11,7 +11,7 @@ using System.Windows.Data;
 
 namespace KMP_Presentation
 {
-    class KMP_View_Model : INotifyPropertyChanged
+    class KMP_View_Model : DependencyObject, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChange(string name)
@@ -76,6 +76,13 @@ namespace KMP_Presentation
         public int Matching { get { return m_model.Matching; } }
         public int Candicate { get { return m_model.Candidate; } }
         public bool Ended { get; set; } = false;
+
+        public static readonly DependencyProperty PresentationSpeedProperty = DependencyProperty.Register("PresentationSpeed", typeof(TimeSpan), typeof(KMP_View_Model), new PropertyMetadata(TimeSpan.FromMilliseconds(500)));
+        public double PresentationSpeed
+        {
+            get { return ((TimeSpan)GetValue(PresentationSpeedProperty)).TotalMilliseconds; }
+            set { SetValue(PresentationSpeedProperty, TimeSpan.FromMilliseconds(value));}
+        }
 
         public ObservableCollection<Presenter> stringModel { get { return m_stringModel; } }
         private ObservableCollection<Presenter> m_stringModel;
