@@ -17,12 +17,6 @@ namespace KMP_Presentation
         Finished,
     }
 
-    class StepInfo
-    {
-        KMP_Status status;
-        object additionalData;
-    }
-
     class KMP_Model
     {
         public string source;
@@ -75,6 +69,7 @@ namespace KMP_Presentation
                 case KMP_Status.Matching:
                     if (Matching - Candidate >= word.Length)
                     {
+                        Answers.Add(Candidate);
                         status = KMP_Status.Found;
                     }
                     else
@@ -92,12 +87,6 @@ namespace KMP_Presentation
                     status = KMP_Status.Matching;
                     break;
                 case KMP_Status.Found:
-                    Answers.Add(Candidate);
-                    Candidate = Matching - PMTE;
-                    if (PMTE < 0)
-                        Matching += 1;
-                    status = KMP_Status.Matching;
-                    break;
                 case KMP_Status.Mismatches:
                     Candidate = Matching - PMTE;
                     if (PMTE < 0)

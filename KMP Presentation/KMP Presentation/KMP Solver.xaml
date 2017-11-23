@@ -9,6 +9,7 @@
         Title="KMP Solver" Height="300" Width="1000">
     <Window.Resources>
         <local:NotLessThanZeroToVisibilityConverter x:Key="IndexVisibilityConverter"/>
+        <local:BackgroundColorConverter x:Key="ColorConverter"/>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="local:CustomCommands.OneStep" Executed="OneStep_Executed" CanExecute="OneStep_CanExecute"/>
@@ -36,6 +37,18 @@
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1">
                         <StackPanel Orientation="Vertical">
+                            <StackPanel.Background>
+                                <SolidColorBrush>
+                                    <SolidColorBrush.Color>
+                                        <MultiBinding Converter="{StaticResource ColorConverter}">
+                                            <Binding Path="IsAnswer"/>
+                                            <Binding Path="LowerIndex"/>
+                                            <Binding Path="UpperChar"/>
+                                            <Binding Path="LowerChar"/>
+                                        </MultiBinding>
+                                    </SolidColorBrush.Color>
+                                </SolidColorBrush>
+                            </StackPanel.Background>
                             <Label Content="{Binding UpperIndex}"/>
                             <Label Content="{Binding UpperChar}"/>
                             <Label Content="{Binding LowerIndex}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>

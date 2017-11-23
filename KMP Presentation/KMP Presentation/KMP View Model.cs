@@ -66,6 +66,8 @@ namespace KMP_Presentation
             var v = m_model.OneStep();
             OnPropertyChange("Matching");
             OnPropertyChange("Candicate");
+            if (v == KMP_Status.Found)
+                stringModel[m_model.Answers.Last()].IsAnswer = true;
             return v;
         }
 
