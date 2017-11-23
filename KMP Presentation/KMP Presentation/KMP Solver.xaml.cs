@@ -20,23 +20,38 @@ namespace KMP_Presentation
     public partial class KMP_Solver : Window
     {
         private KMP_View_Model vm;
-
-        public KMP_Solver()
-        {
-            InitializeComponent();
-        }
+        PMT_Shower shower;
 
         internal KMP_Solver(KMP_View_Model vm)
         {
             this.vm = vm;
             this.DataContext = vm;
+            shower = new PMT_Shower(vm.Word, vm.PMT);
             InitializeComponent();
         }
 
         private void Show_PMT(object sender, RoutedEventArgs e)
         {
-            PMT_Shower shower = new PMT_Shower(vm.Word, vm.PMT);
             shower.Show();
         }
+
+        private void OneStep_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (vm.OneStep() == KMP_Status.Finished)
+                vm.Ended = true;
+        }
+
+        private void OneStep_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+            if (vm != null)
+                if (vm.Ended)
+                    e.CanExecute = false;
+        }
+    }
+
+    public static class CustomCommands
+    {
+        public static readonly RoutedUICommand OneStep = new RoutedUICommand("One Step Forward", "OneStep", typeof(CustomCommands), new InputGestureCollection() { new KeyGesture(Key.PageDown), new KeyGesture(Key.Down) });
     }
 }

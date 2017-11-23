@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,16 +9,20 @@ namespace KMP_Presentation
 {
     enum KMP_Status
     {
+        Beginning,
         Matching,
-        Discarding,
-        Matched,
+        Matches,
+        Mismatches,
+        Found,
         Finished,
     }
+
     class StepInfo
     {
         KMP_Status status;
         object additionalData;
     }
+
     class KMP_Model
     {
         public string source;
@@ -50,14 +55,59 @@ namespace KMP_Presentation
                 cursor += 1;
             }
             PartialMatchTable[cursor] = candidateMatcher;
+            status = KMP_Status.Beginning;
         }
-
-        public int MatchBegin = 0;
+        public int Matching = 0;
         public int Candidate = 0;
         public int[] PartialMatchTable;
-        public void OneStep()
+        public ObservableCollection<int> Answers { get; } = new ObservableCollection<int>();
+        private KMP_Status status;
+        public KMP_Status OneStep()
         {
-            
+            var PMTE = PartialMatchTable[Matching - Candidate];
+            switch(status)
+            {
+                case KMP_Status.Beginning:
+                    Matching = 0;
+                    Candidate = 0;
+                    status = KMP_Status.Matching;
+                    break;
+                case KMP_Status.Matching:
+                    if (Matching - Candidate >= word.Length)
+                    {
+                        status = KMP_Status.Found;
+                    }
+                    else
+                    {
+                        if (source.Length - Candidate < word.Length || Matching >= source.Length)
+                            status = KMP_Status.Finished;
+                        else if (word[Matching - Candidate] == source[Matching])
+                            status = KMP_Status.Matches;
+                        else
+                            status = KMP_Status.Mismatches;
+                    }
+                    break;
+                case KMP_Status.Matches:
+                    Matching += 1;
+                    status = KMP_Status.Matching;
+                    break;
+                case KMP_Status.Found:
+                    Answers.Add(Candidate);
+                    Candidate = Matching - PMTE;
+                    if (PMTE < 0)
+                        Matching += 1;
+                    status = KMP_Status.Matching;
+                    break;
+                case KMP_Status.Mismatches:
+                    Candidate = Matching - PMTE;
+                    if (PMTE < 0)
+                        Matching += 1;
+                    status = KMP_Status.Matching;
+                    break;
+                case KMP_Status.Finished:
+                    break;
+            }
+            return status;
         }
     }
 }

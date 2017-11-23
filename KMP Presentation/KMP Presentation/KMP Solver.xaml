@@ -10,6 +10,9 @@
     <Window.Resources>
         <local:NotLessThanZeroToVisibilityConverter x:Key="IndexVisibilityConverter"/>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:CustomCommands.OneStep" Executed="OneStep_Executed" CanExecute="OneStep_CanExecute"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,7 +20,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
-            <Button DockPanel.Dock="Left">One Step</Button>
+            <Button DockPanel.Dock="Left" Command="local:CustomCommands.OneStep">One Step</Button>
             <Button DockPanel.Dock="Left">Show Begin</Button>
             <Label DockPanel.Dock="Left">Fast</Label>
             <Label DockPanel.Dock="Right">Slow</Label>
