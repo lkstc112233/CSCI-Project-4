@@ -33,6 +33,15 @@
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1">
                         <StackPanel Orientation="Vertical">
+                            <StackPanel.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger >
+                                            
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
                             <Label Content="{Binding UpperIndex}"/>
                             <Label Content="{Binding UpperChar}"/>
                             <Label Content="{Binding LowerIndex}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>
