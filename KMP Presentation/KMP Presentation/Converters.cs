@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace KMP_Presentation
 {
@@ -17,6 +18,40 @@ namespace KMP_Presentation
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    class TimeSpanConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((TimeSpan)value).TotalMilliseconds;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return TimeSpan.FromMilliseconds((double)value);
+        }
+    }
+    class BackgroundColorConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool ia = (bool)values[0];
+            int li = (int)values[1];
+            char uc = (char)values[2];
+            char lc = (char)values[3];
+            if (ia)
+                return Colors.LightSkyBlue;
+            if (li == -1)
+                return Colors.White;
+            if (uc == lc)
+                return Colors.LightGreen;
+            return Colors.LightPink;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
