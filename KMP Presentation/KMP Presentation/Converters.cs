@@ -56,4 +56,18 @@ namespace KMP_Presentation
             throw new NotImplementedException();
         }
     }
+    public class RandomConverter : IValueConverter
+    {
+        Random rand = new Random();
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double param = (double)parameter;
+            return rand.NextDouble() * param * 2 - param;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
 }

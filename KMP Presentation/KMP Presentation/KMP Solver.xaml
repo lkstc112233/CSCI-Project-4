@@ -37,17 +37,11 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
+                    <DataTemplate.Resources>
+                        <local:RandomConverter x:Key="RandomConverter"/>
+                    </DataTemplate.Resources>
                     <Border BorderBrush="Black" BorderThickness="1">
                         <StackPanel Orientation="Vertical">
-                            <StackPanel.Style>
-                                <Style>
-                                    <Style.Triggers>
-                                        <DataTrigger >
-
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </StackPanel.Style>
                             <StackPanel.Background>
                                 <SolidColorBrush>
                                     <SolidColorBrush.Color>
@@ -62,7 +56,33 @@
                             </StackPanel.Background>
                             <Label Content="{Binding UpperIndex}"/>
                             <Label Content="{Binding UpperChar}"/>
-                            <Label Content="{Binding LowerIndex}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>
+                            <Label Content="{Binding LowerIndex}">
+                                <Label.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="0"/>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </TransformGroup>
+                                </Label.RenderTransform>
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Trigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
+                                                                             To="{Binding Converter={StaticResource RandomConverter}, ConverterParameter=360}"
+                                                                             Duration="0:0:1" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.EnterActions>
+                                                <Trigger.ExitActions>
+                                                </Trigger.ExitActions>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
                             <Label Content="{Binding LowerChar}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>
                         </StackPanel>
                     </Border>
