@@ -19,5 +19,7 @@ namespace KMP_Presentation
         public static readonly DependencyProperty LowerCharProperty = DependencyProperty.Register("LowerChar", typeof(char), typeof(Presenter), new PropertyMetadata('\0'));
         public bool IsAnswer { get { return (bool)GetValue(IsAnswerProperty); } set { SetValue(IsAnswerProperty, value); } }
         public static readonly DependencyProperty IsAnswerProperty = DependencyProperty.Register("IsAnswer", typeof(bool), typeof(Presenter), new PropertyMetadata(false));
+        public bool BounceDown { get { return (bool)GetValue(BounceDownProperty); } set { SetValue(BounceDownProperty, value); } }
+        public static readonly DependencyProperty BounceDownProperty = DependencyProperty.Register("BounceDown", typeof(bool), typeof(Presenter), new PropertyMetadata(false));
     }
 }

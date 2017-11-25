@@ -66,19 +66,20 @@
                                 <Label.Style>
                                     <Style TargetType="Label">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding LowerIndex}" Value="1">
+                                            <DataTrigger Binding="{Binding BounceDown}" Value="True">
                                                 <DataTrigger.EnterActions>
                                                     <BeginStoryboard>
                                                         <Storyboard>
                                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
-                                                                             To="-90" Duration="0:0:1" />
+                                                                             To="-180" Duration="0:0:1" />
                                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].X" 
-                                                                             To="20" Duration="0:0:1" />
-                                                            <DoubleAnimationUsingPath Source="Y" Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
-                                                                <DoubleAnimationUsingPath.PathGeometry>
-                                                                    <PathGeometry Figures="M 0,0 V 10 -40"/>
-                                                                </DoubleAnimationUsingPath.PathGeometry>
-                                                            </DoubleAnimationUsingPath>
+                                                                             To="-20" Duration="0:0:1" />
+                                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
+                                                                <LinearDoubleKeyFrame Value="-30" KeyTime="0:0:0.3"/>
+                                                                <LinearDoubleKeyFrame Value="270" KeyTime="0:0:1"/>
+                                                            </DoubleAnimationUsingKeyFrames>
+                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                                             To="0" Duration="0:0:1" />
                                                         </Storyboard>
                                                     </BeginStoryboard>
                                                 </DataTrigger.EnterActions>
@@ -87,7 +88,38 @@
                                     </Style>
                                 </Label.Style>
                             </Label>
-                            <Label Content="{Binding LowerChar}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}"/>
+                            <Label Content="{Binding LowerChar}">
+                                <Label.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="0"/>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </TransformGroup>
+                                </Label.RenderTransform>
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding BounceDown}" Value="True">
+                                                <DataTrigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
+                                                                             To="180" Duration="0:0:1" />
+                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].X" 
+                                                                             To="10" Duration="0:0:1" />
+                                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
+                                                                <LinearDoubleKeyFrame Value="-30" KeyTime="0:0:0.3"/>
+                                                                <LinearDoubleKeyFrame Value="270" KeyTime="0:0:1"/>
+                                                            </DoubleAnimationUsingKeyFrames>
+                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                                             To="0" Duration="0:0:1" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </DataTrigger.EnterActions>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
