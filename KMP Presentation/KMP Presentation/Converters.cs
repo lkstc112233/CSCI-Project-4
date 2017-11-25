@@ -42,9 +42,10 @@ namespace KMP_Presentation
             int li = (int)values[1];
             char uc = (char)values[2];
             char lc = (char)values[3];
+            bool bd = (bool)values[4];
             if (ia)
                 return Colors.LightSkyBlue;
-            if (li == -1)
+            if (bd || li == -1)
                 return Colors.White;
             if (uc == lc)
                 return Colors.LightGreen;
@@ -54,6 +55,20 @@ namespace KMP_Presentation
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+    }
+    public class RandomConverter : IValueConverter
+    {
+        Random rand = new Random();
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double param = (double)parameter;
+            return rand.NextDouble() * param * 2 - param;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
         }
     }
 }

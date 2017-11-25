@@ -40,7 +40,10 @@ namespace KMP_Presentation
         private void OneStep_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (vm.OneStep() == KMP_Status.Finished)
+            {
                 vm.Ended = true;
+                RemoveAllLowerChar();
+            }
         }
 
         private void OneStep_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -91,6 +94,15 @@ namespace KMP_Presentation
                 timer.Stop();
                 BindingOperations.ClearBinding(vm, KMP_View_Model.PresentationSpeedProperty);
                 timer = null;
+                RemoveAllLowerChar();
+            }
+        }
+
+        private void RemoveAllLowerChar()
+        {
+            foreach (var ent in vm.stringModel)
+            {
+                ent.BounceDown = true;
             }
         }
     }

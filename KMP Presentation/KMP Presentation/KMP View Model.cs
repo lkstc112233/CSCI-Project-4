@@ -37,6 +37,7 @@ namespace KMP_Presentation
             int indexCount = 0;
             LowerCharConverter lcc = new LowerCharConverter();
             LowerIndexConverter lic = new LowerIndexConverter();
+            LowerAnimationConverter lac = new LowerAnimationConverter();
             foreach (var ch in s)
             {
                 Presenter p = new Presenter();
@@ -56,6 +57,13 @@ namespace KMP_Presentation
                 mb.Converter = lic;
                 mb.ConverterParameter = indexCount;
                 BindingOperations.SetBinding(p, Presenter.LowerIndexProperty, mb);
+                mb = new MultiBinding();
+                mb.Bindings.Add(getBinding("Word"));
+                mb.Bindings.Add(getBinding("Matching"));
+                mb.Bindings.Add(getBinding("Candicate"));
+                mb.Converter = lac;
+                mb.ConverterParameter = indexCount;
+                BindingOperations.SetBinding(p, Presenter.BounceDownProperty, mb);
                 indexCount += 1;
                 stringModel.Add(p);
             }
@@ -96,7 +104,9 @@ namespace KMP_Presentation
             int matching = (int)values[1];
             int candicate = (int)values[2];
             int index = (int)parameter;
-            if (candicate <= index && candicate + word.Length > index && matching >= index)
+            if (candicate > index)
+                return Binding.DoNothing;
+            if (candicate + word.Length > index && matching >= index)
                 return index - candicate;
             return -1;
         }
@@ -115,9 +125,30 @@ namespace KMP_Presentation
             int matching = (int)values[1];
             int candicate = (int)values[2];
             int index = (int)parameter;
-            if (candicate <= index && candicate + word.Length > index && matching >= index)
+            if (candicate > index)
+                return Binding.DoNothing;
+            if (candicate + word.Length > index && matching >= index)
                 return word[index - candicate];
             return ' ';
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class LowerAnimationConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            string word = values[0] as string;
+            int matching = (int)values[1];
+            int candicate = (int)values[2];
+            int index = (int)parameter;
+            if (candicate > index)
+                return true;
+            return false;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
