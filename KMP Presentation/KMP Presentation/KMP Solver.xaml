@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KMP_Presentation"
         xmlns:properties="clr-namespace:KMP_Presentation.Properties"
         mc:Ignorable="d"
-        Title="KMP Solver" Height="300" Width="1000">
+        Title="KMP Solver" Height="600" Width="1000">
     <Window.Resources>
         <local:NotLessThanZeroToVisibilityConverter x:Key="IndexVisibilityConverter"/>
         <local:BackgroundColorConverter x:Key="ColorConverter"/>
@@ -30,6 +30,21 @@
             <ScrollBar Name="Slider" Orientation="Horizontal" Minimum="100" Maximum="2000" SmallChange="10" LargeChange="300" Value="{Binding Path=PresentationSpeed, Converter={StaticResource TimeConverter}}"/>
         </DockPanel>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding stringModel}">
+            <ItemsControl.Resources>
+                <Style TargetType="{x:Type Label}" x:Key="DefaultLabel">
+                    <Setter Property="FontSize" Value="40"/>
+                </Style>
+                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource DefaultLabel}"/>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="{x:Type ContentPresenter}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding BounceDown}" Value="True">
+                            <Setter Property="Panel.ZIndex" Value="100" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
@@ -57,7 +72,7 @@
                             </StackPanel.Background>
                             <Label Content="{Binding UpperIndex}"/>
                             <Label Content="{Binding UpperChar}"/>
-                            <Label Content="{Binding LowerIndex}">
+                            <Label Content="{Binding LowerIndex}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}">
                                 <Label.RenderTransform>
                                     <TransformGroup>
                                         <RotateTransform Angle="0"/>
@@ -65,7 +80,7 @@
                                     </TransformGroup>
                                 </Label.RenderTransform>
                                 <Label.Style>
-                                    <Style TargetType="Label">
+                                    <Style TargetType="Label" BasedOn="{StaticResource DefaultLabel}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding BounceDown}" Value="True">
                                                 <DataTrigger.EnterActions>
@@ -97,16 +112,16 @@
                                     </TransformGroup>
                                 </Label.RenderTransform>
                                 <Label.Style>
-                                    <Style TargetType="Label">
+                                    <Style TargetType="Label" BasedOn="{StaticResource DefaultLabel}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding BounceDown}" Value="True">
                                                 <DataTrigger.EnterActions>
                                                     <BeginStoryboard>
                                                         <Storyboard>
                                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
-                                                                             To="180" Duration="0:0:1" />
+                                                                             To="160" Duration="0:0:1" />
                                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].X" 
-                                                                             To="10" Duration="0:0:1" />
+                                                                             To="30" Duration="0:0:1" />
                                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
                                                                 <LinearDoubleKeyFrame Value="-30" KeyTime="0:0:0.3"/>
                                                                 <LinearDoubleKeyFrame Value="270" KeyTime="0:0:1"/>

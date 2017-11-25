@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KMP_Presentation"
         mc:Ignorable="d"
-        Title="PMT_Shower" Height="200" Width="500">
+        Title="PMT_Shower" Height="300" Width="500">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="40"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <ItemsControl ItemsSource="{Binding list}">
             <ItemsControl.ItemsPanel>
