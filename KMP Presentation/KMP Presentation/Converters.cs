@@ -42,9 +42,10 @@ namespace KMP_Presentation
             int li = (int)values[1];
             char uc = (char)values[2];
             char lc = (char)values[3];
+            bool bd = (bool)values[4];
             if (ia)
                 return Colors.LightSkyBlue;
-            if (li == -1)
+            if (bd || li == -1)
                 return Colors.White;
             if (uc == lc)
                 return Colors.LightGreen;

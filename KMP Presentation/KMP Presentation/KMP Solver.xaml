@@ -50,6 +50,7 @@
                                             <Binding Path="LowerIndex"/>
                                             <Binding Path="UpperChar"/>
                                             <Binding Path="LowerChar"/>
+                                            <Binding Path="BounceDown"/>
                                         </MultiBinding>
                                     </SolidColorBrush.Color>
                                 </SolidColorBrush>

@@ -29,8 +29,8 @@ namespace KMP_Presentation
         public MainWindow()
         {
             DataContext = this;
-            Source = "AAAAAAA";
-            Word = "BB";
+            Source = "ABC ABCDAB ABCDABCDABCDABDABE";
+            Word = "ABCDABD";
             InitializeComponent();
         }
 
