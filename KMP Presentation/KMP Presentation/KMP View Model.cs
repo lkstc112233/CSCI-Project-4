@@ -104,7 +104,9 @@ namespace KMP_Presentation
             int matching = (int)values[1];
             int candicate = (int)values[2];
             int index = (int)parameter;
-            if (candicate <= index && candicate + word.Length > index && matching >= index)
+            if (candicate > index)
+                return Binding.DoNothing;
+            if (candicate + word.Length > index && matching >= index)
                 return index - candicate;
             return -1;
         }
@@ -123,7 +125,9 @@ namespace KMP_Presentation
             int matching = (int)values[1];
             int candicate = (int)values[2];
             int index = (int)parameter;
-            if (candicate <= index && candicate + word.Length > index && matching >= index)
+            if (candicate > index)
+                return Binding.DoNothing;
+            if (candicate + word.Length > index && matching >= index)
                 return word[index - candicate];
             return ' ';
         }
