@@ -66,19 +66,23 @@
                                 <Label.Style>
                                     <Style TargetType="Label">
                                         <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Trigger.EnterActions>
+                                            <DataTrigger Binding="{Binding LowerIndex}" Value="1">
+                                                <DataTrigger.EnterActions>
                                                     <BeginStoryboard>
                                                         <Storyboard>
                                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
-                                                                             To="{Binding Converter={StaticResource RandomConverter}, ConverterParameter=360}"
-                                                                             Duration="0:0:1" />
+                                                                             To="-90" Duration="0:0:1" />
+                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].X" 
+                                                                             To="20" Duration="0:0:1" />
+                                                            <DoubleAnimationUsingPath Source="Y" Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
+                                                                <DoubleAnimationUsingPath.PathGeometry>
+                                                                    <PathGeometry Figures="M 0,0 V 10 -40"/>
+                                                                </DoubleAnimationUsingPath.PathGeometry>
+                                                            </DoubleAnimationUsingPath>
                                                         </Storyboard>
                                                     </BeginStoryboard>
-                                                </Trigger.EnterActions>
-                                                <Trigger.ExitActions>
-                                                </Trigger.ExitActions>
-                                            </Trigger>
+                                                </DataTrigger.EnterActions>
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Label.Style>
