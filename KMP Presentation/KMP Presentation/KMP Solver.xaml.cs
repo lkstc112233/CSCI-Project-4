@@ -39,10 +39,15 @@ namespace KMP_Presentation
 
         private void OneStep_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (vm.OneStep() == KMP_Status.Finished)
+            switch (vm.OneStep())
             {
-                vm.Ended = true;
-                RemoveAllLowerChar();
+                case KMP_Status.Finished:
+                    vm.Ended = true;
+                    RemoveAllLowerChar();
+                    break;
+                case KMP_Status.Matching:
+                    OneStep_Executed(sender, e);
+                    break;
             }
         }
 
