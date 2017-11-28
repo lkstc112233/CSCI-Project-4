@@ -22,29 +22,29 @@ namespace KMP_Presentation
     public partial class KMP_Solver : Window
     {
         private KMP_View_Model vm;
-        bool showerPresenting;
+        PMT_Shower showerPresenting;
 
         internal KMP_Solver(KMP_View_Model vm)
         {
             this.vm = vm;
             this.DataContext = vm;
-            showerPresenting = false;
+            showerPresenting = null;
             InitializeComponent();
         }
 
         private void Shower_Closed(object sender, EventArgs e)
         {
-            showerPresenting = false;
+            showerPresenting = null;
         }
 
         private void Show_PMT(object sender, RoutedEventArgs e)
         {
-            if (!showerPresenting)
+            if (showerPresenting == null)
             {
-                showerPresenting = true;
-                PMT_Shower shower = new PMT_Shower(vm.Word, vm.PMT);
-                shower.Show();
-                shower.Owner = this;
+                showerPresenting = new PMT_Shower(vm.Word, vm.PMT);
+                showerPresenting.currentUsing = -1;
+                showerPresenting.Show();
+                showerPresenting.Owner = this;
             }
         }
 
@@ -52,7 +52,19 @@ namespace KMP_Presentation
         {
             switch (vm.OneStep())
             {
+                case KMP_Status.Found:
+                    if (showerPresenting != null)
+                        showerPresenting.currentUsing = vm.Word.Length;
+                    break;
+                case KMP_Status.Mismatches:
+                    if (showerPresenting != null)
+                        showerPresenting.currentUsing = vm.Matching - vm.Candicate;
+                    break;
+                case KMP_Status.Matches:
+                    showerPresenting.currentUsing = -1;
+                    break;
                 case KMP_Status.Finished:
+                    showerPresenting.currentUsing = -1;
                     vm.Ended = true;
                     RemoveAllLowerChar();
                     break;
@@ -104,13 +116,28 @@ namespace KMP_Presentation
 
         private void Automatic_Step(object sender, EventArgs e)
         {
-            if (vm.OneStep() == KMP_Status.Finished)
+            switch (vm.OneStep())
             {
-                vm.Ended = true;
-                timer.Stop();
-                BindingOperations.ClearBinding(vm, KMP_View_Model.PresentationSpeedProperty);
-                timer = null;
-                RemoveAllLowerChar();
+                case KMP_Status.Found:
+                    if (showerPresenting != null)
+                        showerPresenting.currentUsing = vm.Word.Length;
+                    break;
+                case KMP_Status.Mismatches:
+                    if (showerPresenting != null)
+                        showerPresenting.currentUsing = vm.Matching - vm.Candicate;
+                    break;
+                case KMP_Status.Matching:
+                case KMP_Status.Matches:
+                    showerPresenting.currentUsing = -1;
+                    break;
+                case KMP_Status.Finished:
+                    showerPresenting.currentUsing = -1;
+                    vm.Ended = true;
+                    timer.Stop();
+                    BindingOperations.ClearBinding(vm, KMP_View_Model.PresentationSpeedProperty);
+                    timer = null;
+                    RemoveAllLowerChar();
+                    break;
             }
         }
 

@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="PMT_Shower" Height="300" Width="500">
     <Window.Resources>
+        <local:IndexConverter x:Key="IndexConverter"/>
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize2}"/>
         </Style>
@@ -21,8 +22,20 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
+                    <DataTemplate.Resources>
+                    </DataTemplate.Resources>
                     <Border BorderBrush="Black" BorderThickness="1">
                         <StackPanel Orientation="Vertical">
+                            <StackPanel.Background>
+                                <SolidColorBrush>
+                                    <SolidColorBrush.Color>
+                                        <MultiBinding Converter="{StaticResource IndexConverter}">
+                                            <Binding Path="currentUsing"/>
+                                            <Binding Path="index"/>
+                                        </MultiBinding>
+                                    </SolidColorBrush.Color>
+                                </SolidColorBrush>
+                            </StackPanel.Background>
                             <Label Content="{Binding index}"/>
                             <Label Content="{Binding ch}"/>
                             <Label Content="{Binding pointer}" />

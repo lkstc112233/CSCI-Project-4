@@ -57,6 +57,21 @@ namespace KMP_Presentation
             throw new NotImplementedException();
         }
     }
+    class IndexConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            int v = (int)values[0];
+            int p = (int)values[1];
+            return v == p ? Colors.LightPink : Colors.White;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class RandomConverter : IValueConverter
     {
         Random rand = new Random();
