@@ -4,26 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KMP_Presentation"
+        xmlns:prop="clr-namespace:KMP_Presentation.Properties"
         mc:Ignorable="d"
-        Title="SettingContentWindow" Height="300" Width="300">
+        Title="Settings Window" Height="300" Width="300">
     <StackPanel Orientation="Vertical">
         <DockPanel>
-            <TextBlock DockPanel.Dock="Left">Source</TextBlock>
-            <TextBox Text="{Binding Path=Source, UpdateSourceTrigger=PropertyChanged}"/>
-        </DockPanel>
-        <DockPanel>
-            <TextBlock DockPanel.Dock="Left">Word</TextBlock>
-            <TextBox Text="{Binding Path=Word, UpdateSourceTrigger=PropertyChanged}"/>
-        </DockPanel>
-        <DockPanel>
-            <ScrollBar DockPanel.Dock="Bottom" Orientation="Horizontal" Minimum="0" Maximum="{Binding Path=Source.Length}" SmallChange="1" LargeChange="10" Value="{Binding Path=Position}"/>
-            <TextBlock DockPanel.Dock="Left">Position</TextBlock>
-            <TextBox Text="{Binding Path=Position}"/>
-        </DockPanel>
-        <DockPanel>
-            <ScrollBar DockPanel.Dock="Bottom" Orientation="Horizontal" Minimum="0" Maximum="{Binding Path=Source.Length}" SmallChange="1" LargeChange="10" Value="{Binding Path=Checking}"/>
-            <TextBlock DockPanel.Dock="Left">Checking</TextBlock>
-            <TextBox Text="{Binding Path=Checking}"/>
+            <ScrollBar DockPanel.Dock="Bottom" Orientation="Horizontal" Minimum="8" Maximum="60" SmallChange="1" LargeChange="10" Value="{Binding Source={x:Static prop:Settings.Default}, Path=FontSize}"/>
+            <TextBlock DockPanel.Dock="Left">Font Size</TextBlock>
+            <TextBox Text="{Binding Source={x:Static prop:Settings.Default}, Path=FontSize}"/>
         </DockPanel>
     </StackPanel>
 </Window>

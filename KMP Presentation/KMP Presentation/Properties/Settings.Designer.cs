@@ -25,13 +25,13 @@ namespace KMP_Presentation.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public int PresentationSpeed {
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public double FontSize {
             get {
-                return ((int)(this["PresentationSpeed"]));
+                return ((double)(this["FontSize"]));
             }
             set {
-                this["PresentationSpeed"] = value;
+                this["FontSize"] = value;
             }
         }
     }

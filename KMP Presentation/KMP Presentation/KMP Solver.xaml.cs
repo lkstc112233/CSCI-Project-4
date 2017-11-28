@@ -29,12 +29,20 @@ namespace KMP_Presentation
             this.vm = vm;
             this.DataContext = vm;
             shower = new PMT_Shower(vm.Word, vm.PMT);
+            shower.Closed += Shower_Closed;
             InitializeComponent();
+        }
+
+        private void Shower_Closed(object sender, EventArgs e)
+        {
+            shower = new PMT_Shower(vm.Word, vm.PMT);
+            shower.Closed += Shower_Closed;
         }
 
         private void Show_PMT(object sender, RoutedEventArgs e)
         {
             shower.Show();
+            shower.Owner = this;
         }
 
         private void OneStep_Executed(object sender, ExecutedRoutedEventArgs e)

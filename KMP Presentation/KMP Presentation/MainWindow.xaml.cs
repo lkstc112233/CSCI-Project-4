@@ -26,6 +26,8 @@ namespace KMP_Presentation
         private static readonly DependencyProperty WordProperty = DependencyProperty.Register("Word", typeof(string), typeof(MainWindow));
         public string Word { get { return (string)GetValue(WordProperty); } set { SetValue(WordProperty, value); } }
 
+        SettingContentWindow settings = null;
+
         public MainWindow()
         {
             DataContext = this;
@@ -40,6 +42,21 @@ namespace KMP_Presentation
             KMP_View_Model vm = new KMP_View_Model(mod);
             KMP_Solver solver = new KMP_Solver(vm);
             solver.Show();
+        }
+
+        private void Show_Settings(object sender, RoutedEventArgs e)
+        {
+            if (settings == null)
+            {
+                settings = new SettingContentWindow();
+                settings.Closed += Settings_Closed;
+            }
+            settings.Show();
+        }
+
+        private void Settings_Closed(object sender, EventArgs e)
+        {
+            settings = null;
         }
     }
 }

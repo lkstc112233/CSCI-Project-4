@@ -6,15 +6,17 @@
         xmlns:local="clr-namespace:KMP_Presentation"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <StackPanel>
-        <DockPanel>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
             <TextBlock DockPanel.Dock="Left">Source</TextBlock>
             <TextBox Text="{Binding Path=Source, UpdateSourceTrigger=PropertyChanged}"/>
         </DockPanel>
-        <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
             <TextBlock DockPanel.Dock="Left">Word</TextBlock>
             <TextBox Text="{Binding Path=Word, UpdateSourceTrigger=PropertyChanged}"/>
         </DockPanel>
-        <Button Click="Show_Solver_Click">Show Solver Window</Button>
-    </StackPanel>
+        <Button DockPanel.Dock="Top" Click="Show_Solver_Click">Show Solver Window</Button>
+        <Button DockPanel.Dock="Bottom" Click="Show_Settings">Settings</Button>
+        <Grid/>
+    </DockPanel>
 </Window>
