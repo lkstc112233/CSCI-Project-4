@@ -9,7 +9,7 @@
         Title="PMT_Shower" Height="300" Width="500">
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
-            <Setter Property="FontSize" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
+            <Setter Property="FontSize" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize2}"/>
         </Style>
     </Window.Resources>
     <Grid>

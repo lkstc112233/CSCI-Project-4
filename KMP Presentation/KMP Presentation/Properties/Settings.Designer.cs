@@ -34,5 +34,17 @@ namespace KMP_Presentation.Properties {
                 this["FontSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public double FontSize2 {
+            get {
+                return ((double)(this["FontSize2"]));
+            }
+            set {
+                this["FontSize2"] = value;
+            }
+        }
     }
 }

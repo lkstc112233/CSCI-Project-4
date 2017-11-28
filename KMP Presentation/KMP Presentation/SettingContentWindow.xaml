@@ -10,8 +10,13 @@
     <StackPanel Orientation="Vertical">
         <DockPanel>
             <ScrollBar DockPanel.Dock="Bottom" Orientation="Horizontal" Minimum="8" Maximum="60" SmallChange="1" LargeChange="10" Value="{Binding Source={x:Static prop:Settings.Default}, Path=FontSize}"/>
-            <TextBlock DockPanel.Dock="Left">Font Size</TextBlock>
+            <TextBlock DockPanel.Dock="Left">Font Size in KMP</TextBlock>
             <TextBox Text="{Binding Source={x:Static prop:Settings.Default}, Path=FontSize}"/>
+        </DockPanel>
+        <DockPanel>
+            <ScrollBar DockPanel.Dock="Bottom" Orientation="Horizontal" Minimum="8" Maximum="60" SmallChange="1" LargeChange="10" Value="{Binding Source={x:Static prop:Settings.Default}, Path=FontSize2}"/>
+            <TextBlock DockPanel.Dock="Left">Font Size in PMT</TextBlock>
+            <TextBox Text="{Binding Source={x:Static prop:Settings.Default}, Path=FontSize2}"/>
         </DockPanel>
     </StackPanel>
 </Window>
