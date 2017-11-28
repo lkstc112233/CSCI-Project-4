@@ -51,8 +51,8 @@ namespace KMP_Presentation
             PartialMatchTable[cursor] = candidateMatcher;
             status = KMP_Status.Beginning;
         }
-        public int Matching = 0;
-        public int Candidate = 0;
+        public int Matching = -1;
+        public int Candidate = -1;
         public int[] PartialMatchTable;
         public ObservableCollection<int> Answers { get; } = new ObservableCollection<int>();
         private KMP_Status status;
