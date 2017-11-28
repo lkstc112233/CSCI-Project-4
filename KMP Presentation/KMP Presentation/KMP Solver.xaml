@@ -32,7 +32,7 @@
         <ItemsControl Grid.Row="1" ItemsSource="{Binding stringModel}">
             <ItemsControl.Resources>
                 <Style TargetType="{x:Type Label}" x:Key="DefaultLabel">
-                    <Setter Property="FontSize" Value="40"/>
+                    <Setter Property="FontSize" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                 </Style>
                 <Style TargetType="{x:Type Label}" BasedOn="{StaticResource DefaultLabel}"/>
             </ItemsControl.Resources>

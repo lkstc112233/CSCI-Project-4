@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KMP_Presentation"
+        xmlns:properties="clr-namespace:KMP_Presentation.Properties"
         mc:Ignorable="d"
         Title="PMT_Shower" Height="300" Width="500">
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
-            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontSize" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
         </Style>
     </Window.Resources>
     <Grid>
