@@ -17,6 +17,17 @@
         </DockPanel>
         <Button DockPanel.Dock="Top" Click="Show_Solver_Click">Show Solver Window</Button>
         <Button DockPanel.Dock="Bottom" Click="Show_Settings">Settings</Button>
-        <Grid/>
+        <GroupBox Header="Presets">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Click="PS1">Preset 1</Button>
+                <Button Grid.Column="1" Click="PS2">Preset 2</Button>
+                <Button Grid.Column="2" Click="PS3">Preset 3</Button>
+            </Grid>
+        </GroupBox>
     </DockPanel>
 </Window>

@@ -22,27 +22,30 @@ namespace KMP_Presentation
     public partial class KMP_Solver : Window
     {
         private KMP_View_Model vm;
-        PMT_Shower shower;
+        bool showerPresenting;
 
         internal KMP_Solver(KMP_View_Model vm)
         {
             this.vm = vm;
             this.DataContext = vm;
-            shower = new PMT_Shower(vm.Word, vm.PMT);
-            shower.Closed += Shower_Closed;
+            showerPresenting = false;
             InitializeComponent();
         }
 
         private void Shower_Closed(object sender, EventArgs e)
         {
-            shower = new PMT_Shower(vm.Word, vm.PMT);
-            shower.Closed += Shower_Closed;
+            showerPresenting = false;
         }
 
         private void Show_PMT(object sender, RoutedEventArgs e)
         {
-            shower.Show();
-            shower.Owner = this;
+            if (!showerPresenting)
+            {
+                showerPresenting = true;
+                PMT_Shower shower = new PMT_Shower(vm.Word, vm.PMT);
+                shower.Show();
+                shower.Owner = this;
+            }
         }
 
         private void OneStep_Executed(object sender, ExecutedRoutedEventArgs e)

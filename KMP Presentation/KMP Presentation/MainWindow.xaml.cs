@@ -58,5 +58,29 @@ namespace KMP_Presentation
         {
             settings = null;
         }
+
+        private void PS1(object sender, RoutedEventArgs e)
+        {
+            KMP_Model mod = new KMP_Model("abcxabcdabxabcdabcdabcy", "abcdabcy");
+            KMP_View_Model vm = new KMP_View_Model(mod);
+            KMP_Solver solver = new KMP_Solver(vm);
+            solver.Show();
+        }
+
+        private void PS2(object sender, RoutedEventArgs e)
+        {
+            KMP_Model mod = new KMP_Model("AAAAAAAAAAAAAAAAAAAAAB", "AAAAB");
+            KMP_View_Model vm = new KMP_View_Model(mod);
+            KMP_Solver solver = new KMP_Solver(vm);
+            solver.Show();
+        }
+
+        private void PS3(object sender, RoutedEventArgs e)
+        {
+            KMP_Model mod = new KMP_Model("AAAAAAAAAAAAAAAAAAA", "AAAAAA");
+            KMP_View_Model vm = new KMP_View_Model(mod);
+            KMP_Solver solver = new KMP_Solver(vm);
+            solver.Show();
+        }
     }
 }
