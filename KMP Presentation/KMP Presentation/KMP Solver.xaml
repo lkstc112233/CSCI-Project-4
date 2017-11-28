@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KMP_Presentation"
         xmlns:properties="clr-namespace:KMP_Presentation.Properties"
         mc:Ignorable="d"
-        Title="KMP Solver" Height="600" Width="1000">
+        Title="KMP Solver" Height="400" Width="1200">
     <Window.Resources>
         <local:NotLessThanZeroToVisibilityConverter x:Key="IndexVisibilityConverter"/>
         <local:BackgroundColorConverter x:Key="ColorConverter"/>
@@ -22,125 +22,129 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.Row="0">
-            <Button DockPanel.Dock="Left" Command="local:CustomCommands.OneStep">One Step</Button>
-            <Button DockPanel.Dock="Left" Command="local:CustomCommands.BeginPause">Show Begin/Pause</Button>
-            <Label DockPanel.Dock="Left">Fast</Label>
-            <Label DockPanel.Dock="Right">Slow</Label>
-            <ScrollBar Name="Slider" Orientation="Horizontal" Minimum="100" Maximum="2000" SmallChange="10" LargeChange="300" Value="{Binding Path=PresentationSpeed, Converter={StaticResource TimeConverter}}"/>
-        </DockPanel>
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding stringModel}">
-            <ItemsControl.Resources>
-                <Style TargetType="{x:Type Label}" x:Key="DefaultLabel">
-                    <Setter Property="FontSize" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                </Style>
-                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource DefaultLabel}"/>
-            </ItemsControl.Resources>
-            <ItemsControl.ItemContainerStyle>
-                <Style TargetType="{x:Type ContentPresenter}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding BounceDown}" Value="True">
-                            <Setter Property="Panel.ZIndex" Value="100" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <DataTemplate.Resources>
-                        <local:RandomConverter x:Key="RandomConverter"/>
-                    </DataTemplate.Resources>
-                    <Border BorderBrush="Black" BorderThickness="1">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.Background>
-                                <SolidColorBrush>
-                                    <SolidColorBrush.Color>
-                                        <MultiBinding Converter="{StaticResource ColorConverter}">
-                                            <Binding Path="IsAnswer"/>
-                                            <Binding Path="LowerIndex"/>
-                                            <Binding Path="UpperChar"/>
-                                            <Binding Path="LowerChar"/>
-                                            <Binding Path="BounceDown"/>
-                                        </MultiBinding>
-                                    </SolidColorBrush.Color>
-                                </SolidColorBrush>
-                            </StackPanel.Background>
-                            <Label Content="{Binding UpperIndex}"/>
-                            <Label Content="{Binding UpperChar}"/>
-                            <Label Content="{Binding LowerIndex}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}">
-                                <Label.RenderTransform>
-                                    <TransformGroup>
-                                        <RotateTransform Angle="0"/>
-                                        <TranslateTransform X="0" Y="0"/>
-                                    </TransformGroup>
-                                </Label.RenderTransform>
-                                <Label.Style>
-                                    <Style TargetType="Label" BasedOn="{StaticResource DefaultLabel}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding BounceDown}" Value="True">
-                                                <DataTrigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
-                                                                             To="-180" Duration="0:0:1" />
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].X" 
-                                                                             To="-20" Duration="0:0:1" />
-                                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
-                                                                <LinearDoubleKeyFrame Value="-30" KeyTime="0:0:0.3"/>
-                                                                <LinearDoubleKeyFrame Value="270" KeyTime="0:0:1"/>
-                                                            </DoubleAnimationUsingKeyFrames>
-                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" 
-                                                                             To="0" Duration="0:0:1" />
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </DataTrigger.EnterActions>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Label.Style>
-                            </Label>
-                            <Label Content="{Binding LowerChar}">
-                                <Label.RenderTransform>
-                                    <TransformGroup>
-                                        <RotateTransform Angle="0"/>
-                                        <TranslateTransform X="0" Y="0"/>
-                                    </TransformGroup>
-                                </Label.RenderTransform>
-                                <Label.Style>
-                                    <Style TargetType="Label" BasedOn="{StaticResource DefaultLabel}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding BounceDown}" Value="True">
-                                                <DataTrigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
-                                                                             To="160" Duration="0:0:1" />
-                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].X" 
-                                                                             To="30" Duration="0:0:1" />
-                                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
-                                                                <LinearDoubleKeyFrame Value="-30" KeyTime="0:0:0.3"/>
-                                                                <LinearDoubleKeyFrame Value="270" KeyTime="0:0:1"/>
-                                                            </DoubleAnimationUsingKeyFrames>
-                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" 
-                                                                             To="0" Duration="0:0:1" />
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </DataTrigger.EnterActions>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Label.Style>
-                            </Label>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <GroupBox Grid.Row="0" Header="Presentation Control">
+            <DockPanel>
+                <Button DockPanel.Dock="Left" Command="local:CustomCommands.OneStep">One Step</Button>
+                <Button DockPanel.Dock="Left" Command="local:CustomCommands.BeginPause">Show Begin/Pause</Button>
+                <Label DockPanel.Dock="Left">Fast</Label>
+                <Label DockPanel.Dock="Right">Slow</Label>
+                <ScrollBar Name="Slider" Orientation="Horizontal" Minimum="100" Maximum="2000" SmallChange="10" LargeChange="300" Value="{Binding Path=PresentationSpeed, Converter={StaticResource TimeConverter}}"/>
+            </DockPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Header="Presentation">
+            <ItemsControl ItemsSource="{Binding stringModel}">
+                <ItemsControl.Resources>
+                    <Style TargetType="{x:Type Label}" x:Key="DefaultLabel">
+                        <Setter Property="FontSize" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
+                    </Style>
+                    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource DefaultLabel}"/>
+                </ItemsControl.Resources>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="{x:Type ContentPresenter}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding BounceDown}" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DataTemplate.Resources>
+                            <local:RandomConverter x:Key="RandomConverter"/>
+                        </DataTemplate.Resources>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel.Background>
+                                    <SolidColorBrush>
+                                        <SolidColorBrush.Color>
+                                            <MultiBinding Converter="{StaticResource ColorConverter}">
+                                                <Binding Path="IsAnswer"/>
+                                                <Binding Path="LowerIndex"/>
+                                                <Binding Path="UpperChar"/>
+                                                <Binding Path="LowerChar"/>
+                                                <Binding Path="BounceDown"/>
+                                            </MultiBinding>
+                                        </SolidColorBrush.Color>
+                                    </SolidColorBrush>
+                                </StackPanel.Background>
+                                <Label Content="{Binding UpperIndex}"/>
+                                <Label Content="{Binding UpperChar}"/>
+                                <Label Content="{Binding LowerIndex}" Visibility="{Binding LowerIndex, Converter={StaticResource IndexVisibilityConverter}}">
+                                    <Label.RenderTransform>
+                                        <TransformGroup>
+                                            <RotateTransform Angle="0"/>
+                                            <TranslateTransform X="0" Y="0"/>
+                                        </TransformGroup>
+                                    </Label.RenderTransform>
+                                    <Label.Style>
+                                        <Style TargetType="Label" BasedOn="{StaticResource DefaultLabel}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding BounceDown}" Value="True">
+                                                    <DataTrigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
+                                                                                 To="-180" Duration="0:0:1" />
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].X" 
+                                                                                 To="-20" Duration="0:0:1" />
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
+                                                                    <LinearDoubleKeyFrame Value="-30" KeyTime="0:0:0.3"/>
+                                                                    <LinearDoubleKeyFrame Value="270" KeyTime="0:0:1"/>
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                                                 To="0" Duration="0:0:1" />
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.EnterActions>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                                <Label Content="{Binding LowerChar}">
+                                    <Label.RenderTransform>
+                                        <TransformGroup>
+                                            <RotateTransform Angle="0"/>
+                                            <TranslateTransform X="0" Y="0"/>
+                                        </TransformGroup>
+                                    </Label.RenderTransform>
+                                    <Label.Style>
+                                        <Style TargetType="Label" BasedOn="{StaticResource DefaultLabel}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding BounceDown}" Value="True">
+                                                    <DataTrigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle" 
+                                                                                 To="160" Duration="0:0:1" />
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].X" 
+                                                                                 To="30" Duration="0:0:1" />
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.Children[1].Y" Duration="0:0:1" >
+                                                                    <LinearDoubleKeyFrame Value="-30" KeyTime="0:0:0.3"/>
+                                                                    <LinearDoubleKeyFrame Value="270" KeyTime="0:0:1"/>
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                                                 To="0" Duration="0:0:1" />
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.EnterActions>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </GroupBox>
         <Button Click="Show_PMT" Grid.Row="2">
             Show Partial Match Table
         </Button>
